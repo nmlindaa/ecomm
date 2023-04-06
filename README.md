@@ -42,3 +42,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 ### `npm run lint`
 
 Runs eslint.
+
+## Deploy on Vercel
+
+Check out our [website](https://ecomm-zeta-nine.vercel.app/) for more details.
