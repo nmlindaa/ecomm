@@ -16,8 +16,10 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.7",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-router-dom": "^6.10.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
@@ -26,6 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "npm run test -- --env=jsdom --coverage --collectCoverageFrom=src/**/*jsx --collectCoverageFrom=!src/path/to/file",
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,jsx}' --quiet --fix"
   },

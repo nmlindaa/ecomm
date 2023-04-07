@@ -1,9 +1,10 @@
+import HomePage from 'components/containers/Home/HomePage'
 import Layout from 'components/Layout'
 
 const Home = () => {
   return (
     <Layout>
-      <div>Welcome!</div>
+      <HomePage />
     </Layout>
   )
 }

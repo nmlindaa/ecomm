@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import { MENU_NAV } from 'utils/constants/menuNav'
+
 import { navbarStyle } from './Navbar.style'
 import { useLocation } from 'react-router-dom'
+import { arrayOf, func, shape, string } from 'prop-types'
 
-const Navbar = () => {
+const Navbar = ({ list }) => {
   const location = useLocation()
   const { pathname } = location
   return (
     <header css={navbarStyle.self}>
       <div css={navbarStyle.wrapper}>
-        {MENU_NAV.map((menu, idx) => {
+        {list.map((menu, idx) => {
           const handleClick = (e) => {
             if (menu.handleUrl) {
               menu.handleUrl()
@@ -28,7 +29,7 @@ const Navbar = () => {
               onClick={handleClick}
               css={[
                 navbarStyle.item,
-                idx === MENU_NAV.length - 1 && navbarStyle.lastItem,
+                idx === list.length - 1 && navbarStyle.lastItem,
                 pathname === menu.url && navbarStyle.itemActive,
               ]}
               {...href}
@@ -40,6 +41,16 @@ const Navbar = () => {
       </div>
     </header>
   )
+}
+
+Navbar.propTypes = {
+  list: arrayOf(
+    shape({
+      label: string.isRequired,
+      url: string,
+      handleUrl: func,
+    })
+  ).isRequired,
 }
 
 export default Navbar

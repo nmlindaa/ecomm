@@ -1,5 +1,7 @@
+import LoginForm from 'components/containers/LoginForm'
+
 const Login = () => {
-  return <div className="login">Login</div>
+  return <LoginForm />
 }
 
 export default Login

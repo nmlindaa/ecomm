@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 export const navbarStyle = {
   self: css({
     padding: '24px',
-    borderBottom: '1px solid #dedede',
+    borderBottom: '2px solid #dedede',
   }),
 
   wrapper: css({
