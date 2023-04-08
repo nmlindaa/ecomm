@@ -1,4 +1,5 @@
 import LoadingScreen from 'components/atoms/LoadingScreen/LoadingScreen'
+import MessageInfo from 'components/atoms/MessageInfo'
 import { useEffect, useState } from 'react'
 import ProductList from './ProductList'
 
@@ -22,6 +23,11 @@ const ProductPage = () => {
       })
   }
 
+  const list = products.map((item) => ({
+    id: item.episode_id.toString(),
+    title: item.title,
+  }))
+
   useEffect(() => {
     asyncStatus === 'idle' && getProduct()
   }, [])
@@ -30,14 +36,18 @@ const ProductPage = () => {
     return <LoadingScreen />
   }
   if (asyncStatus === 'failed') {
-    return <div>There might be a problem. Please report this error.</div>
+    return (
+      <MessageInfo
+        messages={[
+          'Ooops',
+          'There might be a problem to show the products.',
+          'Please try again.',
+        ]}
+        actionLabel="Try again"
+        action={() => getProduct()}
+      />
+    )
   }
-
-  const list = products.map((item) => ({
-    id: item.episode_id.toString(),
-    title: item.title,
-  }))
-
   return <ProductList list={list} />
 }
 
