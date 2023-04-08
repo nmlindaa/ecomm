@@ -6,7 +6,7 @@ import { containerStyle, spinnerStyle } from './LoadingScreen.style'
 const LoadingScreen = () => {
   return (
     <div css={containerStyle}>
-      <div css={spinnerStyle}></div>
+      <div css={spinnerStyle} data-testid="spinner"></div>
       <Typography variant="heading" mt={16}>
         Please wait...
       </Typography>

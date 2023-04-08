@@ -1,14 +1,16 @@
 import LoadingScreen from 'components/atoms/LoadingScreen/LoadingScreen'
 import { useEffect, useState } from 'react'
-import ProductItem from './ProductItem/ProductItem'
 import ProductList from './ProductList'
 
 const ProductPage = () => {
   const [asyncStatus, setAsyncStatus] = useState('idle')
   const [products, setProducts] = useState([])
+
   const getProduct = async () => {
     setAsyncStatus('pending')
-    fetch('https://swapi.dev/api/films/')
+
+    const url = 'https://swapi.dev/api/films/'
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setProducts(data.results)
@@ -31,17 +33,12 @@ const ProductPage = () => {
     return <div>There might be a problem. Please report this error.</div>
   }
 
-  return (
-    <ProductList>
-      {products.map((item, idx) => (
-        <ProductItem
-          key={`product-${idx}`}
-          title={item.title}
-          id={item.episode_id.toString()}
-        />
-      ))}
-    </ProductList>
-  )
+  const list = products.map((item) => ({
+    id: item.episode_id.toString(),
+    title: item.title,
+  }))
+
+  return <ProductList list={list} />
 }
 
 export default ProductPage

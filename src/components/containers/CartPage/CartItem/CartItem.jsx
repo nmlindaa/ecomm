@@ -2,36 +2,22 @@
 
 import Button from 'components/atoms/Button'
 import Typography from 'components/atoms/Typography'
-import { number, string } from 'prop-types'
-import { useContext, useState } from 'react'
-import { CartCtx } from 'utils/providers/CartProvider'
+import { func, number, string } from 'prop-types'
+import { useState } from 'react'
 import { cartItemStyle } from './CartItem.style'
 
-const CartItem = ({ id, title, amount }) => {
-  const { state, updateState } = useContext(CartCtx)
+const CartItem = ({ id, title, amount, changeAmount }) => {
   const [currentAmount, setAmount] = useState(amount)
 
   const updateAmount = (value) => {
     setAmount(value)
-    const newCarts = state.carts.map((cart) => {
-      if (cart.id === id) {
-        return { ...cart, amount: value }
-      }
-      return cart
-    })
-    updateState(newCarts)
+    changeAmount(value, id)
   }
 
-  const addAmount = () => {
-    updateAmount(currentAmount + 1)
-  }
-
-  const subAmount = () => {
-    updateAmount(currentAmount - 1)
-  }
   return (
     <div css={cartItemStyle.wrapper}>
-      <div css={cartItemStyle.image}></div>
+      <div css={cartItemStyle.image} data-testid={`product-img-${id}`}></div>
+
       <div css={cartItemStyle.content}>
         <Typography variant="heading" mb={16}>
           {title}
@@ -39,7 +25,7 @@ const CartItem = ({ id, title, amount }) => {
 
         <div css={cartItemStyle.counter}>
           <Button
-            onClick={() => subAmount()}
+            onClick={() => updateAmount(currentAmount - 1)}
             variant="secondary"
             kind="small"
             disabled={currentAmount <= 1}
@@ -49,7 +35,11 @@ const CartItem = ({ id, title, amount }) => {
 
           {currentAmount}
 
-          <Button onClick={() => addAmount()} variant="secondary" kind="small">
+          <Button
+            onClick={() => updateAmount(currentAmount + 1)}
+            variant="secondary"
+            kind="small"
+          >
             +
           </Button>
         </div>
@@ -59,9 +49,10 @@ const CartItem = ({ id, title, amount }) => {
 }
 
 CartItem.propTypes = {
-  id: string,
-  title: string,
-  amount: number,
+  id: string.isRequired,
+  title: string.isRequired,
+  amount: number.isRequired,
+  changeAmount: func.isRequired,
 }
 
 export default CartItem

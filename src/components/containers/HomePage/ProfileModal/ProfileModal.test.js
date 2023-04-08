@@ -1,4 +1,3 @@
-import React from 'react'
 import { act, fireEvent, render } from '@testing-library/react'
 import { ProfileCtx } from 'utils/providers/ProfileProvider'
 import ProfileModal from './ProfileModal'

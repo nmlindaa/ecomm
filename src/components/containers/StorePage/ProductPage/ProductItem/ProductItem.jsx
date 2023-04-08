@@ -1,38 +1,28 @@
 /** @jsxImportSource @emotion/react */
 import Button from 'components/atoms/Button'
 import Typography from 'components/atoms/Typography'
-import { string } from 'prop-types'
-import { useContext, useState } from 'react'
-import { CartCtx } from 'utils/providers/CartProvider'
+import { bool, func, string } from 'prop-types'
+import { useState } from 'react'
 import { productItemStyle } from './ProductItem.style'
 
-const ProductItem = ({ id, title }) => {
-  const { state, updateState } = useContext(CartCtx)
-
-  const isProductAdded =
-    state.carts.length > 0 ? state.carts.find((cart) => cart.id === id) : false
-
+const ProductItem = ({
+  id,
+  title,
+  isProductAdded,
+  removeFromCart,
+  addToCart,
+}) => {
   const [isAdded, setIsAdded] = useState(isProductAdded)
 
-  const removeFromCart = () => {
-    setIsAdded(false)
-    const newCarts = state.carts.filter((item) => item.id !== id)
-    updateState(newCarts)
-  }
-
-  const addToCart = () => {
-    setIsAdded(true)
-    const newCarts = [...state.carts, { id, title, amount: 1 }]
-    updateState(newCarts)
-  }
-
   const toggleCart = () => {
-    isAdded ? removeFromCart() : addToCart()
+    isAdded ? removeFromCart(id) : addToCart(id, title)
+    setIsAdded(!isAdded)
   }
 
   return (
     <div css={productItemStyle.wrapper}>
-      <div css={productItemStyle.image}></div>
+      <div css={productItemStyle.image} data-testid={`item-${id}`}></div>
+
       <Typography
         variant="body"
         textAlign="center"
@@ -40,6 +30,7 @@ const ProductItem = ({ id, title }) => {
       >
         {title}
       </Typography>
+
       <Button
         kind="small"
         variant={isAdded ? 'secondary' : 'primary'}
@@ -53,8 +44,11 @@ const ProductItem = ({ id, title }) => {
 }
 
 ProductItem.propTypes = {
-  id: string,
-  title: string,
+  id: string.isRequired,
+  title: string.isRequired,
+  isProductAdded: bool.isRequired,
+  removeFromCart: func.isRequired,
+  addToCart: func.isRequired,
 }
 
 export default ProductItem

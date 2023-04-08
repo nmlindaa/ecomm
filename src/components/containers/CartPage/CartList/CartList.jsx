@@ -16,6 +16,17 @@ const CartList = () => {
     toggleReviewModal(false)
     toggleSuccessModal(true)
   }
+
+  const changeAmount = (value, id) => {
+    const newCarts = state.carts.map((cart) => {
+      if (cart.id === id) {
+        return { ...cart, amount: value }
+      }
+      return cart
+    })
+    updateState(newCarts)
+  }
+
   if (state.carts.length < 1) {
     return (
       <div>
@@ -42,6 +53,7 @@ const CartList = () => {
           id={item.id}
           title={item.title}
           amount={item.amount}
+          changeAmount={changeAmount}
         />
       ))}
 

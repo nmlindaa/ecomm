@@ -50,7 +50,8 @@ OrderReviewModal.propTypes = {
   isShown: bool.isRequired,
   closeModal: func.isRequired,
   sendOrder: func.isRequired,
-  purchasingList: arrayOf(shape({ id: string, title: string, amount: number })),
+  purchasingList: arrayOf(shape({ id: string, title: string, amount: number }))
+    .isRequired,
 }
 
 export default OrderReviewModal
