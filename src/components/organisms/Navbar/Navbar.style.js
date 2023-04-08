@@ -12,17 +12,11 @@ export const navbarStyle = {
   }),
 
   item: css({
-    fontSize: '14px',
-    color: '#000000',
     textDecoration: 'none',
   }),
 
   lastItem: css({
     flexGrow: 1,
     textAlign: 'right',
-  }),
-
-  itemActive: css({
-    fontWeight: 'bold',
   }),
 }

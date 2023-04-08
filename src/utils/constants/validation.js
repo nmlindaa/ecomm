@@ -12,7 +12,7 @@ export const minLengthValidation = (label, value, isDigit = false) => ({
 })
 
 export const maxLengthValidation = (label, value, isDigit = false) => ({
-  minLength: {
+  maxLength: {
     value,
     message: `${label} must be less than ${value} ${
       isDigit ? 'digits' : 'characters'

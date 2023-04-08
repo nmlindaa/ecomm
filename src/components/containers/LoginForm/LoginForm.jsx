@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import Button from 'components/atoms/Button'
+import ButtonWrapper from 'components/atoms/ButtonWrapper'
 import Field from 'components/Form/Field'
 import PasswordInput from 'components/Form/PasswordInput'
 import TextInput from 'components/Form/TextInput'
@@ -63,11 +64,11 @@ const LoginForm = () => {
           )}
         />
 
-        <div css={loginStyle.button}>
+        <ButtonWrapper>
           <Button type="submit" disabled={!isDirty || !isValid}>
             Login
           </Button>
-        </div>
+        </ButtonWrapper>
       </form>
     </div>
   )

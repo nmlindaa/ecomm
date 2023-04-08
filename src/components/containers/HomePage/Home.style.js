@@ -10,10 +10,4 @@ export const homeStyle = {
   item: css({
     marginBottom: '12px',
   }),
-
-  button: css({
-    paddingTop: '24px',
-    display: 'flex',
-    justifyContent: 'center',
-  }),
 }

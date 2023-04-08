@@ -1,18 +1,12 @@
 import React from 'react'
 import { act, fireEvent, render } from '@testing-library/react'
-import { initState, ProfileCtx } from 'utils/providers/ProfileProvider'
+import { ProfileCtx } from 'utils/providers/ProfileProvider'
 import ProfileModal from './ProfileModal'
-
-const state = {
-  profile: {
-    ...initState.profile,
-    name: 'John',
-  },
-  isLoggedIn: true,
-  status: 'completed',
-}
-
-const handleFunc = jest.fn()
+import {
+  basicState as state,
+  handleFunc,
+  isProfileUncompleted,
+} from 'utils/testUtils/Profile'
 
 describe('Profile Modal', () => {
   it('renders title, modal, and form', () => {
@@ -20,7 +14,9 @@ describe('Profile Modal', () => {
     const handleSave = jest.fn()
 
     const { getByText, getByTestId } = render(
-      <ProfileCtx.Provider value={{ state, updateState: handleFunc }}>
+      <ProfileCtx.Provider
+        value={{ state, updateState: handleFunc, isProfileUncompleted }}
+      >
         <ProfileModal
           showModal
           closeModal={handleClose}
@@ -40,7 +36,9 @@ describe('Profile Modal', () => {
     const handleSave = jest.fn()
 
     const { getByText, getByPlaceholderText } = render(
-      <ProfileCtx.Provider value={{ state, updateState: handleFunc }}>
+      <ProfileCtx.Provider
+        value={{ state, updateState: handleFunc, isProfileUncompleted }}
+      >
         <ProfileModal
           showModal
           closeModal={handleClose}

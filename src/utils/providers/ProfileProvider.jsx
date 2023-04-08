@@ -20,6 +20,10 @@ const ProfileProvider = ({ children }) => {
     setState(newValue)
   }
 
+  const isProfileUncompleted = () => {
+    return Object.values(state.profile).includes('')
+  }
+
   useEffect(() => {
     if (state.status === 'idle') {
       const name = localStorage.getItem('name')
@@ -40,7 +44,7 @@ const ProfileProvider = ({ children }) => {
   }, [])
 
   return (
-    <ProfileCtx.Provider value={{ state, updateState }}>
+    <ProfileCtx.Provider value={{ state, updateState, isProfileUncompleted }}>
       {children}
     </ProfileCtx.Provider>
   )

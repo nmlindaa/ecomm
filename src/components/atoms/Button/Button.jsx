@@ -9,10 +9,11 @@ const Button = ({
   disabled = false,
   variant = 'primary',
   isFullWidth = false,
+  kind = 'medium',
 }) => {
   return (
     <button
-      css={buttonStyle(variant, isFullWidth)}
+      css={buttonStyle(variant, isFullWidth, kind)}
       onClick={onClick}
       type={type}
       disabled={disabled}
@@ -29,6 +30,7 @@ Button.propTypes = {
   disabled: bool,
   variant: oneOf(['primary', 'secondary']),
   isFullWidth: bool,
+  kind: oneOf(['medium', 'small']),
 }
 
 export default Button

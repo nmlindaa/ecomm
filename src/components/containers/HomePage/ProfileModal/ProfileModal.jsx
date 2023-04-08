@@ -2,6 +2,7 @@
 
 import Button from 'components/atoms/Button'
 import Modal from 'components/atoms/Modal'
+import Typography from 'components/atoms/Typography'
 import Field from 'components/Form/Field'
 import TextInput from 'components/Form/TextInput'
 import { bool, func } from 'prop-types'
@@ -43,7 +44,9 @@ const ProfileModal = ({ showModal, closeModal, saveProfile }) => {
   return (
     <Modal isShown={showModal} closeModal={closeModal}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div css={profileModalStyle.title}>Edit Profile</div>
+        <Typography variant="title" textAlign="center" mt={16} mb={8}>
+          Edit Profile
+        </Typography>
 
         <Field
           name="name"

@@ -4,12 +4,15 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import ProfileProvider from 'utils/providers/ProfileProvider'
+import CartProvider from 'utils/providers/CartProvider'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <ProfileProvider>
-      <App />
+      <CartProvider>
+        <App />
+      </CartProvider>
     </ProfileProvider>
   </React.StrictMode>
 )

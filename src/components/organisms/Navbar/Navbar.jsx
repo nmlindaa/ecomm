@@ -3,6 +3,7 @@
 import { navbarStyle } from './Navbar.style'
 import { useLocation } from 'react-router-dom'
 import { arrayOf, func, shape, string } from 'prop-types'
+import Typography from 'components/atoms/Typography'
 
 const Navbar = ({ list }) => {
   const location = useLocation()
@@ -17,25 +18,26 @@ const Navbar = ({ list }) => {
               e.preventDefault()
             }
           }
-          let Wrapper = 'div'
+          let wrapper = 'div'
           let href = {}
           if (menu.url) {
-            Wrapper = 'a'
+            wrapper = 'a'
             href = { href: menu.url }
           }
           return (
-            <Wrapper
+            <Typography
+              variant={pathname === menu.url ? 'heading' : 'body'}
+              tagName={wrapper}
               key={`menu${idx}`}
               onClick={handleClick}
               css={[
                 navbarStyle.item,
                 idx === list.length - 1 && navbarStyle.lastItem,
-                pathname === menu.url && navbarStyle.itemActive,
               ]}
               {...href}
             >
               {menu.label}
-            </Wrapper>
+            </Typography>
           )
         })}
       </div>

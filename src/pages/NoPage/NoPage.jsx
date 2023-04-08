@@ -1,8 +1,16 @@
+import MessageInfo from 'components/atoms/MessageInfo'
+
 const NoPage = () => {
   return (
-    <div className="no-page">
-      <h1>Not Found</h1>
-    </div>
+    <MessageInfo
+      messages={[
+        'Oops!',
+        "The page you're looking for cannot be found.",
+        'Please check the link or go to homepage.',
+      ]}
+      action={() => () => (location.href = '/')}
+      actionLabel="Back to homepage"
+    />
   )
 }
 

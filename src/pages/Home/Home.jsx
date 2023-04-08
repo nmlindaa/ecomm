@@ -1,4 +1,4 @@
-import HomePage from 'components/containers/Home/HomePage'
+import HomePage from 'components/containers/HomePage/HomePage'
 import Layout from 'components/Layout'
 
 const Home = () => {

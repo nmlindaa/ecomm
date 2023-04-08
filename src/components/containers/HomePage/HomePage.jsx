@@ -1,13 +1,15 @@
 /** @jsxImportSource @emotion/react */
 
 import Button from 'components/atoms/Button'
+import ButtonWrapper from 'components/atoms/ButtonWrapper'
+import Typography from 'components/atoms/Typography'
 import { useContext, useState } from 'react'
 import { ProfileCtx } from 'utils/providers/ProfileProvider'
 import { homeStyle } from './Home.style'
 import ProfileModal from './ProfileModal'
 
 const HomePage = () => {
-  const { state } = useContext(ProfileCtx)
+  const { state, updateState } = useContext(ProfileCtx)
 
   const list = [
     { label: 'Name', value: state.profile.name },
@@ -35,16 +37,16 @@ const HomePage = () => {
   return (
     <div css={homeStyle.wrapper}>
       {list.map((item, idx) => (
-        <div key={`list-${idx}`} css={homeStyle.item}>
+        <Typography key={`list-${idx}`} mb={12}>
           <strong>{item.label}:</strong> {item.value || '-'}
-        </div>
+        </Typography>
       ))}
 
-      <div css={homeStyle.button}>
+      <ButtonWrapper>
         <Button onClick={() => toggleShowModal(true)}>
           Complete your profile
         </Button>
-      </div>
+      </ButtonWrapper>
 
       <ProfileModal
         showModal={showModal}

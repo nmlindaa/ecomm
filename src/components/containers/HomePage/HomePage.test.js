@@ -1,17 +1,11 @@
 import { act, fireEvent, render } from '@testing-library/react'
 import { ProfileCtx } from 'utils/providers/ProfileProvider'
+import {
+  completedState as state,
+  handleFunc as updateState,
+  isProfileUncompleted,
+} from 'utils/testUtils/Profile'
 import HomePage from './HomePage'
-
-const state = {
-  profile: {
-    name: 'John',
-    email: 'john@gmail.com',
-    phone: '62847463772',
-    address: 'Chicago',
-  },
-  isLoggedIn: true,
-  status: 'completed',
-}
 
 const list = [
   { label: 'Name', value: state.profile.name },
@@ -20,8 +14,6 @@ const list = [
   { label: 'Address', value: state.profile.address },
 ]
 
-const updateState = () => jest.fn()
-
 describe('HomePage', () => {
   beforeEach(() => {
     jest.clearAllMocks()
@@ -29,7 +21,7 @@ describe('HomePage', () => {
 
   it('show profile', () => {
     const { getByText } = render(
-      <ProfileCtx.Provider value={{ state, updateState }}>
+      <ProfileCtx.Provider value={{ state, updateState, isProfileUncompleted }}>
         <HomePage list={list} />
       </ProfileCtx.Provider>
     )
@@ -48,7 +40,7 @@ describe('HomePage', () => {
       getByPlaceholderText,
       getByRole,
     } = render(
-      <ProfileCtx.Provider value={{ state, updateState }}>
+      <ProfileCtx.Provider value={{ state, updateState, isProfileUncompleted }}>
         <HomePage list={list} />
       </ProfileCtx.Provider>
     )
