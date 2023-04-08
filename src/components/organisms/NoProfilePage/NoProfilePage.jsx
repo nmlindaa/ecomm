@@ -5,7 +5,9 @@ const NoProfilePage = () => {
   return (
     <MessageInfo
       messages={WARNING_MESSAGE}
-      action={() => () => (location.href = '/')}
+      action={() => {
+        location.href = '/'
+      }}
       actionLabel="Back to homepage"
     />
   )
